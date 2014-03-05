@@ -1,4 +1,15 @@
 data-reduction-pipeline
 =======================
 
-Generalized Data Reduction for Zoonivere Projects
+Generalized Data Reduction for Zooniverse Projects
+
+## Usage
+
+FIXME
+
+## License
+
+Copyright © 2014 FIXME
+
+Distributed under the Eclipse Public License either version 1.0 or (at
+your option) any later version.
