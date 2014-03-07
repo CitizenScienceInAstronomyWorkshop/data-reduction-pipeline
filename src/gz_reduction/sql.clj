@@ -43,7 +43,7 @@
         base-tbl  (-> (p/create*)
                       (p/table (:prefix tree))
                       (p/varchar :subject_id 24))]
-    (execute (reduce #(p/integer %1 (keyword %2)) base-tbl columns) :db db)))
+    (execute (reduce #(p/float %1 (keyword %2)) base-tbl columns) :db db)))
 
 (defn flatten-answer
   [q m [a v]]

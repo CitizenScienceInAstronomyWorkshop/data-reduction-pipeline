@@ -31,6 +31,11 @@
            (update-in m [a] + w)
            (assoc m a w))))
 
+(defn vote-fractions
+  [ans]
+  (let [count (reduce + (vals ans))]
+    (fmap (comp float #(/ % count)) ans)))
+
 (defn reduce-answers
   [ans]
   (reduce reduce-answer {} ans))
@@ -61,11 +66,11 @@
           next
           (.indexOf q-texts next))))))
 
-(comment (defn resolve-answer
-           []
-           (cond 
-             (seq? (ans q-index)) ()
-             true (nth (:answers question) (ans q-index)))))
+(defn resolve-answer
+  [question ans q-index]
+  (cond 
+    (seq? (ans q-index)) ()
+    true (nth (:answers question) (ans q-index))))
 
 (defn prune-tree
   [{:keys [questions]} ans]
@@ -108,7 +113,7 @@
   {sid (->> (map :annotations cs)
             (reduce concat)
             (group-by first)
-            (fmap (comp selector reduce-answers)))})
+            (fmap (comp selector vote-fractions reduce-answers)))})
 
 (defn run-reduction
   [col tree weight-fn select-fn]
