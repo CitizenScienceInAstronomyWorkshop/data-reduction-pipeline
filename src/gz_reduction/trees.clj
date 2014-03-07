@@ -25,12 +25,10 @@
 (defn update-next-reference
   [all-tasks [key task]]
   (when-let [next (.getNext task)]
-    (println next)
     (let [new-ref (find-next-reference next all-tasks)]
       (.put all-tasks key (.withNext task new-ref))))
   (doseq [c (.choices task)]
     (when-let [next (.get c "next")]
-      (println next)
       (.put c "next" (find-next-reference next all-tasks)))))
 
 (defn- gz-next-references
